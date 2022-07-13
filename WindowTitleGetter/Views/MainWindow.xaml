@@ -1,10 +1,44 @@
-﻿<Window x:Class="WindowTitleGetter.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:prism="http://prismlibrary.com/"
-        prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
+﻿<Window
+    x:Class="WindowTitleGetter.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:prism="http://prismlibrary.com/"
+    Title="{Binding Title}"
+    Width="780"
+    Height="400"
+    prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+        <ListBox
+            Grid.Row="0"
+            ItemsSource="{Binding Windows}"
+            SelectedItem="{Binding SelectedItem}">
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="C"
+                    Command="{Binding CopyTextCommand}"
+                    Modifiers="Ctrl" />
+            </ListBox.InputBindings>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding Title}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
