@@ -14,7 +14,18 @@
         </Grid.RowDefinitions>
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding Windows}">
+        <ListBox
+            Grid.Row="0"
+            ItemsSource="{Binding Windows}"
+            SelectedItem="{Binding SelectedItem}">
+
+            <ListBox.InputBindings>
+                <KeyBinding
+                    Key="C"
+                    Command="{Binding CopyTextCommand}"
+                    Modifiers="Ctrl" />
+            </ListBox.InputBindings>
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border>
