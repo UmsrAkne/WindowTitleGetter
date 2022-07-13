@@ -1,10 +1,9 @@
-﻿using WindowTitleGetter.Views;
-using Prism.Ioc;
-using Prism.Modularity;
-using System.Windows;
-
-namespace WindowTitleGetter
+﻿namespace WindowTitleGetter
 {
+    using System.Windows;
+    using Prism.Ioc;
+    using WindowTitleGetter.Views;
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -17,7 +16,6 @@ namespace WindowTitleGetter
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
         }
     }
 }
