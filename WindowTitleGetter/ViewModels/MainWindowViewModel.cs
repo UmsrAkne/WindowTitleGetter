@@ -13,10 +13,12 @@
         private string title = "Window title getter";
         private ObservableCollection<WindowInfo> windows;
         private WindowInfo selectedItem;
+        private WindowInfoDbContext dbContext = new WindowInfoDbContext();
 
         public MainWindowViewModel()
         {
             GetWindowTitleList();
+            dbContext.Database.EnsureCreated();
         }
 
         public string Title
