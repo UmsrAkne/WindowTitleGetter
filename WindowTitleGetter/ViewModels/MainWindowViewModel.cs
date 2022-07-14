@@ -37,6 +37,11 @@
             }
         });
 
+        public DelegateCommand ReloadCommand => new DelegateCommand(() =>
+        {
+            GetWindowTitleList();
+        });
+
         private void GetWindowTitleList()
         {
             var processes = Process.GetProcesses();

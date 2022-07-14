@@ -7,6 +7,16 @@
     Width="780"
     Height="400"
     prism:ViewModelLocator.AutoWireViewModel="True">
+
+    <Window.InputBindings>
+
+        <KeyBinding
+            Key="R"
+            Command="{Binding ReloadCommand}"
+            Modifiers="Ctrl" />
+
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
