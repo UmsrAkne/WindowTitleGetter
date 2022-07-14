@@ -2,6 +2,7 @@
 {
     using System.Data.SQLite;
     using System.IO;
+    using System.Linq;
     using Microsoft.Data.Sqlite;
     using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,14 @@
         public DbSet<WindowInfo> WindowInfos { get; set; }
 
         private string DBFileName { get; set; } = "windowInfos.sqlite";
+
+        public void Add(WindowInfo info)
+        {
+            if (!WindowInfos.Any(w => w.Title == info.Title))
+            {
+                WindowInfos.Add(info);
+            }
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

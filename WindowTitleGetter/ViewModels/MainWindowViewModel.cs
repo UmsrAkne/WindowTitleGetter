@@ -52,6 +52,13 @@
                 .Select(process => new WindowInfo() { Title = process.MainWindowTitle });
 
             Windows = new ObservableCollection<WindowInfo>(windowInfos);
+
+            foreach (var w in windowInfos)
+            {
+                dbContext.Add(w);
+            }
+
+            dbContext.SaveChanges();
         }
     }
 }
