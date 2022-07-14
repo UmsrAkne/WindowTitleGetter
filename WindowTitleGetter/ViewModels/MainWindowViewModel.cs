@@ -10,7 +10,7 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Windot title getter";
+        private string title = "Window title getter";
         private ObservableCollection<WindowInfo> windows;
         private WindowInfo selectedItem;
 
