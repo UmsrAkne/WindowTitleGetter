@@ -1,5 +1,6 @@
 ﻿namespace WindowTitleGetter.ViewModels
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Linq;
@@ -10,13 +11,15 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Windot title getter";
+        private string title = "Window title getter";
         private ObservableCollection<WindowInfo> windows;
         private WindowInfo selectedItem;
+        private WindowInfoDbContext dbContext = new WindowInfoDbContext();
 
         public MainWindowViewModel()
         {
             GetWindowTitleList();
+            dbContext.Database.EnsureCreated();
         }
 
         public string Title
@@ -34,7 +37,21 @@
             if (SelectedItem != null)
             {
                 Clipboard.SetText(SelectedItem.Title);
+
+                //// クリップボードにテキストをセットした後、データベースにそのことを記録しておく
+
+                dbContext.Add(SelectedItem);
+                dbContext.SaveChanges();
+
+                var windowInfo = dbContext.WindowInfos.FirstOrDefault(w => w.Title == SelectedItem.Title);
+                windowInfo.LastCopiedDateTime = DateTime.Now;
+                dbContext.SaveChanges();
             }
+        });
+
+        public DelegateCommand ReloadCommand => new DelegateCommand(() =>
+        {
+            GetWindowTitleList();
         });
 
         private void GetWindowTitleList()
@@ -45,6 +62,13 @@
                 .Select(process => new WindowInfo() { Title = process.MainWindowTitle });
 
             Windows = new ObservableCollection<WindowInfo>(windowInfos);
+
+            foreach (var w in windowInfos)
+            {
+                dbContext.Add(w);
+            }
+
+            dbContext.SaveChanges();
         }
     }
 }
