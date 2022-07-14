@@ -50,5 +50,24 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="Padding" Value="3" />
+
+                </Style>
+            </StackPanel.Resources>
+
+            <Button Command="{Binding ReloadCommand}" Content="リロード ( Ctrl + R )" />
+
+            <Button Command="{Binding CopyTextCommand}" Content="タイトルをコピー ( Ctrl + C )" />
+
+        </StackPanel>
     </Grid>
 </Window>
