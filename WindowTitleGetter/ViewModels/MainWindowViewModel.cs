@@ -40,11 +40,14 @@
 
                 //// クリップボードにテキストをセットした後、データベースにそのことを記録しておく
 
+                var now = DateTime.Now;
+
+                SelectedItem.LastCopiedDateTime = now;
                 dbContext.Add(SelectedItem);
                 dbContext.SaveChanges();
 
                 var windowInfo = dbContext.WindowInfos.FirstOrDefault(w => w.Title == SelectedItem.Title);
-                windowInfo.LastCopiedDateTime = DateTime.Now;
+                windowInfo.LastCopiedDateTime = now;
                 dbContext.SaveChanges();
             }
         });
