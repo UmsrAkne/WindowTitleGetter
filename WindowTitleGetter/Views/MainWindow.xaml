@@ -56,12 +56,18 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding Title}" />
 
-                        <TextBlock Grid.Column="1" Text="{Binding CreationDateTime}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Text="{Binding CreationDateTime}" />
+
+                        <TextBlock Grid.Column="2" Text="{Binding LastCopiedDateTime}" />
                     </Grid>
 
                 </DataTemplate>
