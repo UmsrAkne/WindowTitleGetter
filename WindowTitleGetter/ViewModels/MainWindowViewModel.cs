@@ -59,7 +59,10 @@
 
         public DelegateCommand ShowHistoryCommand => new DelegateCommand(() =>
         {
-            var windowInfos = dbContext.WindowInfos.Where(i => true);
+            var windowInfos = dbContext.WindowInfos.Where(info => true)
+                .OrderByDescending(info => info.LastCopiedDateTime)
+                .ThenByDescending(info => info.CreationDateTime);
+
             Windows = new ObservableCollection<WindowInfo>(windowInfos);
         });
 
