@@ -2,6 +2,7 @@
     x:Class="WindowTitleGetter.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="clr-namespace:WindowTitleGetter.Models"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
     Width="780"
@@ -11,6 +12,7 @@
     <Window.Resources>
         <SolidColorBrush x:Key="bgBrush" Color="#333333" />
         <SolidColorBrush x:Key="fgBrush" Color="WhiteSmoke" />
+        <models:DateTimeConverter x:Key="dateTimeConverter" />
     </Window.Resources>
 
     <Window.InputBindings>
@@ -65,9 +67,12 @@
                         <TextBlock
                             Grid.Column="1"
                             Margin="10,0"
-                            Text="{Binding CreationDateTime}" />
+                            Text="{Binding CreationDateTime, Converter={StaticResource dateTimeConverter}}" />
 
-                        <TextBlock Grid.Column="2" Text="{Binding LastCopiedDateTime}" />
+                        <TextBlock
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            Text="{Binding LastCopiedDateTime, Converter={StaticResource dateTimeConverter}}" />
                     </Grid>
 
                 </DataTemplate>
