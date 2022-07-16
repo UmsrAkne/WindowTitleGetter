@@ -52,15 +52,17 @@
 
                     </DataTemplate.Resources>
 
-                    <Border>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding Title}" />
-                        </Grid>
-                    </Border>
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" />
+
+                        <TextBlock Grid.Column="1" Text="{Binding CreationDateTime}" />
+                    </Grid>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
