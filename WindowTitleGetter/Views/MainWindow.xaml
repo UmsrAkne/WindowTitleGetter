@@ -8,6 +8,11 @@
     Height="400"
     prism:ViewModelLocator.AutoWireViewModel="True">
 
+    <Window.Resources>
+        <SolidColorBrush x:Key="bgBrush" Color="#333333" />
+        <SolidColorBrush x:Key="fgBrush" Color="WhiteSmoke" />
+    </Window.Resources>
+
     <Window.InputBindings>
 
         <KeyBinding
@@ -17,7 +22,7 @@
 
     </Window.InputBindings>
 
-    <Grid>
+    <Grid Background="{StaticResource bgBrush}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="auto" />
@@ -26,6 +31,7 @@
 
         <ListBox
             Grid.Row="0"
+            Background="{StaticResource bgBrush}"
             ItemsSource="{Binding Windows}"
             SelectedItem="{Binding SelectedItem}">
 
@@ -38,15 +44,25 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+                    <DataTemplate.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="Foreground" Value="{StaticResource fgBrush}" />
+                        </Style>
 
-                            <TextBlock Text="{Binding Title}" />
-                        </Grid>
-                    </Border>
+                    </DataTemplate.Resources>
+
+                    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Title}" />
+
+                        <TextBlock Grid.Column="1" Text="{Binding CreationDateTime}" />
+                    </Grid>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
