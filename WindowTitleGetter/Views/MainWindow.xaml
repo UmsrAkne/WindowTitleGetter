@@ -38,6 +38,13 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
+                    <DataTemplate.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="13" />
+                        </Style>
+
+                    </DataTemplate.Resources>
+
                     <Border>
                         <Grid>
                             <Grid.ColumnDefinitions>
