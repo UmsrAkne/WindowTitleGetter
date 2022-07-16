@@ -55,28 +55,42 @@
 
                     </DataTemplate.Resources>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                        </Grid.ColumnDefinitions>
+                    <Border
+                        Padding="2"
+                        BorderBrush="Gray"
+                        BorderThickness="0.5">
 
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock
-                            Grid.Column="1"
-                            Margin="10,0"
-                            Text="{Binding CreationDateTime, Converter={StaticResource dateTimeConverter}}" />
+                            <TextBlock Grid.Column="0" Text="{Binding Title}" />
 
-                        <TextBlock
-                            Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            Text="{Binding LastCopiedDateTime, Converter={StaticResource dateTimeConverter}}" />
-                    </Grid>
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0"
+                                Text="{Binding CreationDateTime, Converter={StaticResource dateTimeConverter}}" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Text="{Binding LastCopiedDateTime, Converter={StaticResource dateTimeConverter}}" />
+                        </Grid>
+                    </Border>
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+
         </ListBox>
 
         <StackPanel
