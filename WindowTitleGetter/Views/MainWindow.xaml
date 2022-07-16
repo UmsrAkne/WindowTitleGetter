@@ -8,6 +8,11 @@
     Height="400"
     prism:ViewModelLocator.AutoWireViewModel="True">
 
+    <Window.Resources>
+        <SolidColorBrush x:Key="bgBrush" Color="#333333" />
+        <SolidColorBrush x:Key="fgBrush" Color="WhiteSmoke" />
+    </Window.Resources>
+
     <Window.InputBindings>
 
         <KeyBinding
@@ -17,7 +22,7 @@
 
     </Window.InputBindings>
 
-    <Grid>
+    <Grid Background="{StaticResource bgBrush}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="auto" />
@@ -26,6 +31,7 @@
 
         <ListBox
             Grid.Row="0"
+            Background="{StaticResource bgBrush}"
             ItemsSource="{Binding Windows}"
             SelectedItem="{Binding SelectedItem}">
 
@@ -41,6 +47,7 @@
                     <DataTemplate.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="13" />
+                            <Setter Property="Foreground" Value="{StaticResource fgBrush}" />
                         </Style>
 
                     </DataTemplate.Resources>
