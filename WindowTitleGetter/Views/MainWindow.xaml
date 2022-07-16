@@ -31,6 +31,7 @@
 
         <ListBox
             Grid.Row="0"
+            HorizontalContentAlignment="Stretch"
             Background="{StaticResource bgBrush}"
             ItemsSource="{Binding Windows}"
             SelectedItem="{Binding SelectedItem}">
@@ -52,10 +53,10 @@
 
                     </DataTemplate.Resources>
 
-                    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}">
+                    <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding Title}" />
