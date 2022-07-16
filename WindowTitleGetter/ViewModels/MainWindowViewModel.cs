@@ -40,11 +40,14 @@
 
                 //// クリップボードにテキストをセットした後、データベースにそのことを記録しておく
 
+                var now = DateTime.Now;
+
+                SelectedItem.LastCopiedDateTime = now;
                 dbContext.Add(SelectedItem);
                 dbContext.SaveChanges();
 
                 var windowInfo = dbContext.WindowInfos.FirstOrDefault(w => w.Title == SelectedItem.Title);
-                windowInfo.LastCopiedDateTime = DateTime.Now;
+                windowInfo.LastCopiedDateTime = now;
                 dbContext.SaveChanges();
             }
         });
@@ -52,6 +55,15 @@
         public DelegateCommand ReloadCommand => new DelegateCommand(() =>
         {
             GetWindowTitleList();
+        });
+
+        public DelegateCommand ShowHistoryCommand => new DelegateCommand(() =>
+        {
+            var windowInfos = dbContext.WindowInfos.Where(info => true)
+                .OrderByDescending(info => info.LastCopiedDateTime)
+                .ThenByDescending(info => info.CreationDateTime);
+
+            Windows = new ObservableCollection<WindowInfo>(windowInfos);
         });
 
         private void GetWindowTitleList()

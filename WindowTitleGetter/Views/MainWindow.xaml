@@ -22,6 +22,11 @@
             Command="{Binding ReloadCommand}"
             Modifiers="Ctrl" />
 
+        <KeyBinding
+            Key="H"
+            Command="{Binding ShowHistoryCommand}"
+            Modifiers="Ctrl" />
+
     </Window.InputBindings>
 
     <Grid Background="{StaticResource bgBrush}">
@@ -62,9 +67,9 @@
 
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="570" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Text="{Binding Title}" />
@@ -107,6 +112,8 @@
             </StackPanel.Resources>
 
             <Button Command="{Binding ReloadCommand}" Content="リロード ( Ctrl + R )" />
+
+            <Button Command="{Binding ShowHistoryCommand}" Content="履歴を表示 ( Ctrl + H )" />
 
             <Button Command="{Binding CopyTextCommand}" Content="タイトルをコピー ( Ctrl + C )" />
 
