@@ -54,6 +54,12 @@
             GetWindowTitleList();
         });
 
+        public DelegateCommand ShowHistoryCommand => new DelegateCommand(() =>
+        {
+            var windowInfos = dbContext.WindowInfos.Where(i => true);
+            Windows = new ObservableCollection<WindowInfo>(windowInfos);
+        });
+
         private void GetWindowTitleList()
         {
             var processes = Process.GetProcesses();
