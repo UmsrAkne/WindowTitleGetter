@@ -2,6 +2,7 @@
     x:Class="WindowTitleGetter.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="clr-namespace:WindowTitleGetter.Models"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding Title}"
     Width="780"
@@ -11,6 +12,7 @@
     <Window.Resources>
         <SolidColorBrush x:Key="bgBrush" Color="#333333" />
         <SolidColorBrush x:Key="fgBrush" Color="WhiteSmoke" />
+        <models:DateTimeConverter x:Key="dateTimeConverter" />
     </Window.Resources>
 
     <Window.InputBindings>
@@ -31,6 +33,7 @@
 
         <ListBox
             Grid.Row="0"
+            HorizontalContentAlignment="Stretch"
             Background="{StaticResource bgBrush}"
             ItemsSource="{Binding Windows}"
             SelectedItem="{Binding SelectedItem}">
@@ -52,19 +55,42 @@
 
                     </DataTemplate.Resources>
 
-                    <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Border
+                        Padding="2"
+                        BorderBrush="Gray"
+                        BorderThickness="0.5">
 
-                        <TextBlock Grid.Column="0" Text="{Binding Title}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" Text="{Binding CreationDateTime}" />
-                    </Grid>
+                            <TextBlock Grid.Column="0" Text="{Binding Title}" />
+
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="10,0"
+                                Text="{Binding CreationDateTime, Converter={StaticResource dateTimeConverter}}" />
+
+                            <TextBlock
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                Text="{Binding LastCopiedDateTime, Converter={StaticResource dateTimeConverter}}" />
+                        </Grid>
+                    </Border>
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+
         </ListBox>
 
         <StackPanel

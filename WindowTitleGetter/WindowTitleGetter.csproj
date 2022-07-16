@@ -65,6 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\DateTimeConverter.cs" />
     <Compile Include="Models\WindowInfo.cs" />
     <Compile Include="Models\WindowInfoDbContext.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
