@@ -8,6 +8,11 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+            {
+                return default(DateTime);
+            }
+
             DateTime dateTime = (DateTime)value;
             return dateTime != default(DateTime) ? dateTime.ToString("MM/dd HH:mm") : "----- -----";
         }

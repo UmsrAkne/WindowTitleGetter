@@ -2,17 +2,22 @@
     x:Class="WindowTitleGetter.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:WindowTitleGetter.Models"
     xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewModels="clr-namespace:WindowTitleGetter.ViewModels"
     Title="{Binding Title}"
     Width="780"
     Height="400"
-    prism:ViewModelLocator.AutoWireViewModel="True">
+    d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
 
     <Window.Resources>
-        <SolidColorBrush x:Key="bgBrush" Color="#333333" />
-        <SolidColorBrush x:Key="fgBrush" Color="WhiteSmoke" />
-        <models:DateTimeConverter x:Key="dateTimeConverter" />
+        <SolidColorBrush x:Key="BgBrush" Color="#333333" />
+        <SolidColorBrush x:Key="FgBrush" Color="WhiteSmoke" />
+        <models:DateTimeConverter x:Key="DateTimeConverter" />
     </Window.Resources>
 
     <Window.InputBindings>
@@ -29,7 +34,7 @@
 
     </Window.InputBindings>
 
-    <Grid Background="{StaticResource bgBrush}">
+    <Grid Background="{StaticResource BgBrush}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="auto" />
@@ -39,7 +44,7 @@
         <ListBox
             Grid.Row="0"
             HorizontalContentAlignment="Stretch"
-            Background="{StaticResource bgBrush}"
+            Background="{StaticResource BgBrush}"
             ItemsSource="{Binding Windows}"
             SelectedItem="{Binding SelectedItem}">
 
@@ -55,7 +60,7 @@
                     <DataTemplate.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="13" />
-                            <Setter Property="Foreground" Value="{StaticResource fgBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource FgBrush}" />
                         </Style>
 
                     </DataTemplate.Resources>
@@ -77,12 +82,12 @@
                             <TextBlock
                                 Grid.Column="1"
                                 Margin="10,0"
-                                Text="{Binding CreationDateTime, Converter={StaticResource dateTimeConverter}}" />
+                                Text="{Binding CreationDateTime, Converter={StaticResource DateTimeConverter}}" />
 
                             <TextBlock
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
-                                Text="{Binding LastCopiedDateTime, Converter={StaticResource dateTimeConverter}}" />
+                                Text="{Binding LastCopiedDateTime, Converter={StaticResource DateTimeConverter}}" />
                         </Grid>
                     </Border>
 

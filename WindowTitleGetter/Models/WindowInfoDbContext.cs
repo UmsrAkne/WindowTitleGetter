@@ -8,9 +8,10 @@
 
     public class WindowInfoDbContext : DbContext
     {
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public DbSet<WindowInfo> WindowInfos { get; set; }
 
-        private string DBFileName { get; set; } = "windowInfos.sqlite";
+        private string DbFileName { get; set; } = "windowInfos.sqlite";
 
         public void Add(WindowInfo info)
         {
@@ -22,12 +23,12 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!File.Exists(DBFileName))
+            if (!File.Exists(DbFileName))
             {
-                SQLiteConnection.CreateFile(DBFileName); // ファイルが存在している場合は問答無用で上書き。
+                SQLiteConnection.CreateFile(DbFileName); // ファイルが存在している場合は問答無用で上書き。
             }
 
-            var connectionString = new SqliteConnectionStringBuilder { DataSource = DBFileName }.ToString();
+            var connectionString = new SqliteConnectionStringBuilder { DataSource = DbFileName }.ToString();
             optionsBuilder.UseSqlite(new SQLiteConnection(connectionString));
         }
     }
