@@ -1,9 +1,9 @@
-﻿namespace WindowTitleGetter
-{
-    using System.Windows;
-    using Prism.Ioc;
-    using WindowTitleGetter.Views;
+﻿using System.Windows;
+using Prism.Ioc;
+using WindowTitleGetter.Views;
 
+namespace WindowTitleGetter
+{
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>

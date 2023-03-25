@@ -1,14 +1,14 @@
-﻿namespace WindowTitleGetter.ViewModels
-{
-    using System;
-    using System.Collections.ObjectModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Windows;
-    using Prism.Commands;
-    using Prism.Mvvm;
-    using WindowTitleGetter.Models;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using Prism.Commands;
+using Prism.Mvvm;
+using WindowTitleGetter.Models;
 
+namespace WindowTitleGetter.ViewModels
+{
     public class MainWindowViewModel : BindableBase
     {
         private string title = "Window title getter";
@@ -73,9 +73,10 @@
                 .Where(process => process.MainWindowTitle.Length != 0)
                 .Select(process => new WindowInfo() { Title = process.MainWindowTitle });
 
-            Windows = new ObservableCollection<WindowInfo>(windowInfos);
+            var collection = windowInfos.ToList();
+            Windows = new ObservableCollection<WindowInfo>(collection);
 
-            foreach (var w in windowInfos)
+            foreach (var w in collection)
             {
                 dbContext.Add(w);
             }
